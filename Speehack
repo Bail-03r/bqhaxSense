@@ -9,4 +9,3 @@ while game:GetService("RunService").RenderStepped:Wait() do
             game.Players.LocalPlayer.Character.ClientHandler.Disabled = false
     end
     end
-    end)
