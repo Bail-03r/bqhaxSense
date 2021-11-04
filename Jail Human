@@ -1,0 +1,21 @@
+getgenv().loop = true
+    local fin = game.Players[txt]
+    
+    if fin then
+        pos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        while loop == true do
+            local weld = game.Players[txt].Character:FindFirstChild("Weld")
+            local weldlocal = game.Players.LocalPlayer.Character:FindFirstChild("Weld")
+            if weld then
+                getgenv().loop = false
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-680, 15, -9)
+                wait(13)
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+            else
+                mouse1click()
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = fin.Character.HumanoidRootPart.CFrame * CFrame.new(0,0,1)
+            end
+        wait()
+        end
+    end
+    end)
