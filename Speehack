@@ -1,0 +1,12 @@
+while game:GetService("RunService").RenderStepped:Wait() do
+    local Tool = game.Players.LocalPlayer.Character:FindFirstChild("Radio")
+    if Tool then
+        game.Players.LocalPlayer.Character.ClientHandler.Disabled = true
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 100
+        else
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+            wait(0.2)
+            game.Players.LocalPlayer.Character.ClientHandler.Disabled = false
+    end
+    end
+    end)
