@@ -1,0 +1,2 @@
+Instance.new('Fire',game:GetService("Players").LocalPlayer.Backpack.Bat.Handle)
+    Instance.new('Fire',game:GetService("Players").LocalPlayer.Backpack.Bottle.Handle)
