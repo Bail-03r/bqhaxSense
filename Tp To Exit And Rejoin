@@ -1,0 +1,5 @@
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-226, 22.9941711, 27, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+        wait(0.5)
+        local ts = game:GetService("TeleportService")
+        local p = game:GetService("Players").LocalPlayer
+        ts:Teleport(game.PlaceId, p)
