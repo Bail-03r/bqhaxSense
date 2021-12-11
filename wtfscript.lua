@@ -14,7 +14,7 @@ if game.PlaceId == 5989426850 then
     game.Players.LocalPlayer.Character.Humanoid.HipHeight = 0
     
     local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-    local Window = Library.CreateLib("bqhaxSense", "GrapeTheme")
+    local Window = Library.CreateLib("bqhaxSense", "DarkTheme")
     
     --aim
     local Tab = Window:NewTab("Aim")
@@ -101,11 +101,24 @@ if game.PlaceId == 5989426850 then
         game:GetService("Workspace").Goop:Destroy()
     end)
     
-    local Section = Tab:NewSection("Настройки")
+    local Tab = Window:NewTab("Покупка")
+    local Section = Tab:NewSection("Оружие(не весь список)")
+    for i,v in pairs(workspace:GetChildren()) do
+        if v.Name:find('Buy') then
+            Section:NewButton(v.Name .. ' ' .. v.PriceLabel.TextLabel.Text, "да да я", function()
+                print'fired'
+                fireclickdetector(v.ClickDetector)
+            end)
+        end
+    end
+
+    local Tab = Window:NewTab("настройки")
+    local Section = Tab:NewSection("пасхалка")
+
     Section:NewKeybind("Открытие Меню", "д.. д.. д.. даня?!", Enum.KeyCode.Insert, function()
     	Library:ToggleUI()
     end)
-    
+
     Section:NewKeybind("Выдача Тулов", "эээ", Enum.KeyCode.T, function()
     	fireclickdetector(game:GetService("Workspace")["Bottle Buy"].ClickDetector)
         fireclickdetector(game:GetService("Workspace")["Bat Buy"].ClickDetector)
