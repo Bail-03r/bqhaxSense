@@ -1,10 +1,13 @@
 if game.PlaceId == 5989426850 then
     
-    local old
-    old = hookmetamethod(game,'__namecall',function(...)
+    local nigga
+    nigga = hookmetamethod(game,'__namecall',function(...)
         script = getcallingscript()
         if getnamecallmethod()=='BreakJoints' and tostring(script)=='ClientHandler' then
-            return
+            return print'kill detect'
+        end
+        if getnamecallmethod()=='FireServer' and ...==game.ReplicatedStorage.Remotes.GiveMoney then
+            return print'ban detect' 
         end
         return old(...)
     end)
@@ -48,10 +51,6 @@ if game.PlaceId == 5989426850 then
     end
     end)
     
-    Section:NewSlider("HipHeight", "Летайте без бана", 16, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
-        game.Players.LocalPlayer.Character.Humanoid.HipHeight = s
-    end)
-    
     --furry gaming here
     
     local Section = Tab:NewSection("Троллинг")
@@ -59,14 +58,30 @@ if game.PlaceId == 5989426850 then
         game.Players.LocalPlayer.Character.Humanoid:Destroy()
     end)
     
-    Section:NewButton("Фурри", "Сделать человека фурри", function()
-        game.Players.LocalPlayer.Character.Humanoid:Destroy()
+    Section:NewButton("Стать Фурри", "Сделать человека фурри", function()
+        if game.Players.LocalPlayer.Character:FindFirstChild('Infection') then
+            return
+        else
+            pos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-756.764465, -10.8808384, -48.8336563)
+            wait()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+        end
+    end)
+    
+    Section:NewButton("Сломать Щиты", "Сделать человека фурри", function()
+        for i,v in pairs(workspace:GetDescendants()) do
+        	if v:IsA('Part') and v.Name == 'Forcefield' then
+        	    local clone = v:Clone()
+        	    clone.Parent = workspace
+        		v:Destroy()
+        	end
+        end
     end)
 
     Section:NewButton("(Авто) Застанить Человека", "Нажми и тепнет чела в тюрьму", function()
         game.Players.LocalPlayer.Character.ChildAdded:Connect(function(what)
             if what.Name == "Weld" then
-                wait()
                 game.Players.LocalPlayer.Character["Humanoid"]:Destroy()
             end
         end)
@@ -81,19 +96,20 @@ if game.PlaceId == 5989426850 then
         end)
     end)
     Section:NewButton("Моментально Заразить", "fixed", function()
-        pos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-756.764465, -10.8808384, -48.8336563)
-        wait()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+        if game.Players.LocalPlayer.Character:FindFirstChild('Infection') then
+            return
+        else
+            pos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-756.764465, -10.8808384, -48.8336563)
+            wait()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+        end
     end)
     
     local Section = Tab:NewSection("Tool")
-    Section:NewButton("Выдать Тулы", "Выдаёт Вам Бесплатные Тулы", function()
+    Section:NewButton("Выдать Фри Туллы", "Выдаёт Вам Бесплатные Тулы", function()
         fireclickdetector(game:GetService("Workspace")["Bottle Buy"].ClickDetector)
         fireclickdetector(game:GetService("Workspace")["Bat Buy"].ClickDetector)
-    end)
-    Section:NewToggle("(Auto)Выдать Бутылку", "Выдаёт вам постоянно бутылку", function(state)
-    
     end)
     
     local Section = Tab:NewSection("Goop")
@@ -124,14 +140,18 @@ if game.PlaceId == 5989426850 then
         fireclickdetector(game:GetService("Workspace")["Bat Buy"].ClickDetector)
     end)
     
-    Section:NewKeybind("Застанить Человека", "эээ", Enum.KeyCode.H, function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-680, 15, -9)
+    Section:NewKeybind("Тюрьма", "эээ", Enum.KeyCode.H, function()
+        if game.Players.LocalPlayer.Character:FindFirstChild('Infection') then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-680, 15, -9)
+        end
     end)
-    Section:NewKeybind("Застанить Человека", "эээ", Enum.KeyCode.F, function()
-        pos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-756.764465, -10.8808384, -48.8336563)
-        wait()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+    Section:NewKeybind("Моментально Заразить", "эээ", Enum.KeyCode.F, function()
+        if game.Players.LocalPlayer.Character:FindFirstChild('Infection') then
+            pos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-756.764465, -10.8808384, -48.8336563)
+            wait()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+        end
     end)
     
     Section:NewKeybind("ТП к выходу", "эээ", Enum.KeyCode.P, function()
